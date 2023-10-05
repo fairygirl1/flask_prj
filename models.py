@@ -19,8 +19,8 @@ class Specialists(db.Model):
 
 class Services(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    category = db.Column #тут должен быть выбор из нескольких заранее заданных категорий, надо погуглить тип данных
-    image = db.Column # тип данных для картинок
+    category = db.Column(db.String(100), nullable=False)
+    image = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     specialist = db.Column(db.String(100), nullable=False)
-    price = db.Column #тип данных
+    price = db.Column(db.String(10), nullable=False)
