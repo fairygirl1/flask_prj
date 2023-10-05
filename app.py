@@ -1,20 +1,24 @@
+from config import Config
+
 from flask import Flask, render_template, url_for, request, redirect, make_response, session,flash,get_flashed_messages
 from models import User, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
+
 import os
+import time
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask_beauty.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
 app.secret_key = os.environ.get('secret_key')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Config.SQLALCHEMY_TRACK_MODIFICATIONS
 
 db.init_app(app)
 
-@app.route('/index')
 @app.route('/home')
-@app.route('/')
+@app.route('/', methods=["GET"])
+def index():
+    return render_template('index.html')
 
 
 @app.route('/auth', methods=['POST', 'GET'])
@@ -40,19 +44,25 @@ def auth():
 @app.route('/registration', methods=['POST', 'GET'])
 def registration():
     """Регистрация"""
-
     if request.method == 'POST':
         name = request.form.get('name')
         username = request.form.get('username')
         password = request.form.get('password')
         password = generate_password_hash(password, "sha256")
         new_user = User(name=name, username=username, password=password)
+        
         try:
             db.session.add(new_user)
             db.session.commit()
-        except:
-            return "Error"
+        except BaseException as e:
+            # Надо выводить пользователю информацию об неуспешной регистрации
+            flash("Something bad!")
+            raise e
+        # Надо выводить пользователю информацию об успешной регистрации
+        flash("Succesfull registration!")
+        time.sleep(0.5)
         return redirect("/auth")
+        
     return render_template('registration.html')
 
 
