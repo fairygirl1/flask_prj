@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect, make_response, session,flash,get_flashed_messages
-from models import User, db
+from models import Specialists, User, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
 import os
@@ -15,6 +15,13 @@ db.init_app(app)
 @app.route('/index')
 @app.route('/home')
 @app.route('/')
+
+@app.route('/specialists')
+def show_specialists_count():
+    # Получение количества записей в таблице Specialists
+    count = Specialists.query.count()
+    
+    return render_template('index.html', count=count)
 
 
 @app.route('/auth', methods=['POST', 'GET'])
