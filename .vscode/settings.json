@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:flask_prj}/instance/flask_beauty.db",
+            "name": "flask_prj"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
