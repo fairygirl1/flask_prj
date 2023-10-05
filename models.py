@@ -10,11 +10,11 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable = False)
 
 ### администраторы
-class Admins(db.Model):
+class Specialists(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     avatar = db.Column(db.String(100), nullable = False)
     name = db.Column(db.String(100), nullable=False)
-    position = db.Column(db.String(100), nullable=False)
+    position = db.Column(db.String(100), nullable=False) # специализация
     services = db.Column(db.String(100), nullable=False) # связь с оказывваемой услугой many to many
 
 
