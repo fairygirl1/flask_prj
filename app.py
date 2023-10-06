@@ -50,14 +50,14 @@ def registration():
         password = request.form.get('password')
         password = generate_password_hash(password, "sha256")
         new_user = User(name=name, username=username, password=password)
-        
+
         try:
             db.session.add(new_user)
             db.session.commit()
-        except BaseException as e:
+        except BaseException as err:
             # Надо выводить пользователю информацию об неуспешной регистрации
             flash("Something bad!")
-            raise e
+            raise err
         # Надо выводить пользователю информацию об успешной регистрации
         flash("Succesfull registration!")
         time.sleep(0.5)

@@ -2,14 +2,14 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-### пользователи
+### Пользователи
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     username = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100), nullable = False)
 
-### администраторы
+### Администраторы
 class Specialists(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     avatar = db.Column(db.String(100), nullable = False)
@@ -19,8 +19,12 @@ class Specialists(db.Model):
 
 
 
-### разные категории услуг - разные таблицы в бд
-# на домашней странице будет выбор категорий (подтягиваются из бд), в каждой категории свои услуги - они на отдельных страницах категорий в карусельке
+# Разные категории услуг - разные таблицы в бд
+# на домашней странице будет выбор категорий (подтягиваются из бд), в каждой категории 
+# свои услуги - они на отдельных страницах категорий в карусельке
+
+# class Categories(db.Model):
+
 
 class Nails(db.Model):
     id = db.Column(db.Integer, primary_key=True)
