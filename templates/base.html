@@ -9,16 +9,20 @@
         </div>
   
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
           <li><a href="/services" class="nav-link px-2">Services</a></li>
           <li><a href="/specialists" class="nav-link px-2">Specialists</a></li>
-          <li><a href="#" class="nav-link px-2">Feedback</a></li>
-          <li><a href="#" class="nav-link px-2">About</a></li>
+          <li><a href="/reviews" class="nav-link px-2">Reviews</a></li>
+          <li><a href="/about" class="nav-link px-2">About</a></li>
         </ul>
   
         <div class="col-md-3 text-end">
-          <button type="button" class="btn btn-outline-primary me-2">Login</button>
-          <button type="button" class="btn btn-primary">Sign-up</button>
+          <button type="button" class="btn btn-outline-primary me-2">
+            <a href="/auth" class="nav-link px-2">Login</a>
+          </button>
+          <button type="button" class="btn btn-primary">
+            <a href="/signup" class="nav-link px-2">Sign up</a>
+          </button>
         </div>
 </header>
 
@@ -28,18 +32,18 @@
 {% endblock %}
 
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-body-secondary">© 2023 Company, Inc</p>
+    <p class="col-md-4 mb-0 text-body-secondary">© 2023 Sirius, Suslova</p>
 
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
     </a>
 
     <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Home</a></li>
+      <li class="nav-item"><a href="/services" class="nav-link px-2 text-body-secondary">Services</a></li>
+      <li class="nav-item"><a href="/specialists" class="nav-link px-2 text-body-secondary">Specialists</a></li>
+      <li class="nav-item"><a href="/reviews" class="nav-link px-2 text-body-secondary">Feedback</a></li>
+      <li class="nav-item"><a href="/about" class="nav-link px-2 text-body-secondary">About</a></li>
     </ul>
 </footer>
 

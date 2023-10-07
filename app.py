@@ -48,7 +48,7 @@ def auth():
     return render_template("auth.html")
 
 
-@app.route('/registration', methods=['POST', 'GET'])
+@app.route('/signup', methods=['POST', 'GET'])
 def registration():
     """Регистрация"""
     if request.method == 'POST':
@@ -70,7 +70,14 @@ def registration():
         time.sleep(0.5)
         return redirect("/auth")
         
-    return render_template('registration.html')
+    return render_template('signup.html')
+
+('/call') # звонок
+('/claimform') #форма с пересылкой на почту
+('/services')
+('/specialists')
+('/about')
+('/reviews') # отзывы
 
 
 

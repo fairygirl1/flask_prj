@@ -1,29 +1,82 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="about-company ui-container" data-v-0d07a49a=""><div class="main-statistics about-page__block" data-v-0d07a49a=""><h2 class="main-statistics__title h-new h-new--3">
-    Why our salon?
-    </h2> <ul class="main-statistics__list">
-        <li class="main-statistics__item"><b class="main-statistics__header h-new h-new--4">
-            №1
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+    <div class="col-md-6 p-lg-5 mx-auto my-5">
+      <h1 class="display-3 fw-bold">Beauty salon Chamomile</h1>
+      <h2 class="display-3">Designed for women</h2>
+      <h3 class="fw-normal text-muted mb-3">Glad to see your pretty face</h3>
+      <div class="d-flex gap-3 justify-content-center lead fw-normal">
+        <a class="icon-link" href="/call">
+          Call us
+          <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+        <a class="icon-link" href="/claimform">
+          Claim
+          <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
 
-            <div class="ui-tooltip-fb main-statistics__tooltip">
-                <button type="button" aria-label="Показать тултип" class="ui-tooltip-fb__button ui-tooltip-fb__button--default f f--14">
-                    <svg width="16" height="16" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="ui-tooltip-fb__icon icon sprite-icons">
-                        <use href="/_nuxt/6ef17dd70f6d4946f6c3f173c749500a.svg#i-ui-tooltip" xlink:href="/_nuxt/6ef17dd70f6d4946f6c3f173c749500a.svg#i-ui-tooltip">
-                            </use></svg></button> 
-                            <div class="ui-tooltip-popover ui-tooltip-fb__popover ui-tooltip-popover--top" style="visibility:hidden;">
-                                <div class="ui-tooltip-content__wrapper ui-tooltip-content__wrapper--desktop ui-shadow-10pt ui-tooltip-content__wrapper--center"><!----> 
-                                    <div class="ui-tooltip-content__content"><!----> 
-                                        <p class="ui-tooltip-content__text f f--14">Wake&nbsp;is №1 Lapdandia ranked by beauty queens!&nbsp;</p> 
-                                        <button type="button" class="ui-tooltip-popover__button ui-button ui-button--filled-main ui-button--small" style="display: none;"><!----> 
-        <!----></button></div></div></div></div></b> 
-            <p class="main-statistics__text p p--2">to create beauty in your life and on your body</p>
-        </li>
-        <li class="main-statistics__item">
-            <b class="main-statistics__header h-new h-new--4">
-                <p>{{ count }}</p><!----></b> 
-                <p class="main-statistics__text p p--2">cool specialists in our salon</p>
-        </li>
+<div class="container px-4 py-5" id="custom-cards">
+    <h2 class="pb-2 border-bottom">Introduction</h2>
+
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/home.jpg');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Services</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <img src="/static/images/cham.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+                <small>Earth</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/home.jpg');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Our Specialists</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <img src="/static/images/cham.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+                <small>Pakistan</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/home.jpg');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Reviews</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <img src="/static/images/cham.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+                <small>California</small>
+              </li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
