@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for category, message in  get_flashed_messages(with_categories=true) %}
+    <div class="success flash" style="font-size: 20px;">{{ message }}</div>
+{% endfor %}
+
+{% endblock %}

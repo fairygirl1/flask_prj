@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'auth_base.html' %}
 {% block content %}
 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
@@ -7,32 +7,18 @@
       <h2 class="display-3">Designed for women</h2>
       <h3 class="fw-normal text-muted mb-3">Glad to see your pretty face</h3>
       <div class="d-flex gap-3 justify-content-center lead fw-normal">
-        
-        <body>
-          <input type="text" id="textToCopy" value="89500194067" style="display: none;">
-          <button type="button" class="btn btn-primary" onclick="copyToClipboard()">Call us</button>
-      
-          <script>
-              function copyToClipboard() {
-                  const textToCopy = document.getElementById("textToCopy").value;
-                  
-                  const textArea = document.createElement("textarea");
-                  textArea.value = textToCopy;
-                  document.body.appendChild(textArea);
-                  textArea.select();
-                  
-                  document.execCommand("copy");
-                  
-                  document.body.removeChild(textArea);
-                  
-                  alert("Phone number is copied");
-              }
-          </script>
-        </body>
-        
-        <button type="button" class="btn btn-primary">
-          <a href="/claim" class="nav-link px-2">Claim</a>
-        </button>
+        <a class="icon-link" href="/admin_services">
+          Create new service
+          <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+        <a class="icon-link" href="/admin_specialists">
+          Create new specialist
+          <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+        <a class="icon-link" href="/admin_blog">
+            Create new blog
+            <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+          </a>
       </div>
     </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
@@ -54,6 +40,7 @@
                 </li>
                 <li class="d-flex align-items-center me-3">
                   <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+                  <small>Earth</small>
                 </li>
               </ul>
             </div>
@@ -72,7 +59,8 @@
                 </li>
                 <li class="d-flex align-items-center me-3">
                   <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
-                 </li>
+                  <small>Pakistan</small>
+                </li>
               </ul>
             </div>
           </div>
@@ -90,6 +78,7 @@
                 </li>
                 <li class="d-flex align-items-center me-3">
                   <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+                  <small>California</small>
                 </li>
                 </li>
               </ul>
