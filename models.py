@@ -23,7 +23,7 @@ class Specialists(db.Model):
 
 class Services(db.Model):
     title = db.Column(db.String(100), primary_key=True, nullable=False)
-    image = FileField('Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+    # image = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     specialist = db.Column(db.String(100), nullable=False)
     price = db.Column(db.String(10), nullable=False)

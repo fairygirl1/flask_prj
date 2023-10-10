@@ -2,7 +2,11 @@
 {% block content %}
 
 {% for category, message in  get_flashed_messages(with_categories=true) %}
-    <div class="success flash" style="font-size: 20px;">{{ message }}</div>
+    <div class="success flash" style="font-size: 30px; 
+    text-align: center; display: flex; justify-content: center; 
+    align-items: center; height: 60vh;">
+        {{ message }}
+    </div>
 {% endfor %}
 
 {% endblock %}

@@ -33,16 +33,32 @@ app.config['MAIL_DEFAULT_SENDER'] = Config.MAIL_DEFAULT_SENDER
 db.init_app(app)
 mail = Mail(app)
 
+def sessions():
+    """Сессии"""
+    if 'visits' in session:
+        session['visits'] = session.get('visits') + 1
+    else:
+        session['visits'] = 1
+    return session
+
+def service_base():
+    service = Services.query.all()
+    return render_template("service_base.html", service=service)
+
 @app.route('/admin')
 def admin_index():
+    """Страница администратора"""
     return render_template('admin_index.html')
 
 @app.route('/', methods=["GET"])
 def index():
-    return render_template('index.html')
+    """Домашняя страница"""
+    visits = sessions().get('visits', 0)
+    return render_template('index.html', visits=visits)
 
 @app.route('/thanks')
 def thanks():
+    """Промежуточная страница. Вывод флеш-сообщений"""
     return render_template('thanks.html')
 
 @app.route('/auth', methods=['POST', 'GET'])
@@ -57,11 +73,13 @@ def auth():
             flash("No same user")
             return redirect("/auth")
         if check_password_hash(user.password, password):
-
-            return render_template('auth.html', username=user.name, )
+            username=user.name
+            flash(f"Glad to see you, {username}!")
+            return render_template('thanks.html', username=user.name, )
         else:
             flash("Wrong password")
             return redirect("/auth")
+            
     return render_template("auth.html")
 
 
@@ -86,7 +104,7 @@ def registration():
             flash("Something bad!", 'error')
             raise err
         flash("Succesfull registration!", 'success')
-        return redirect("/auth")
+        return render_template("auth.html")
         
     return render_template('signup.html')
 
@@ -112,7 +130,7 @@ def claim():
         except BaseException as err:
             flash("Something bad!", 'error')
             raise err
-        flash("Succesfull registration!", 'success')
+        flash("Letter is sent!", 'success')
         return redirect("/thanks")
 
     return render_template("claim.html")
@@ -126,20 +144,17 @@ def admin_services():
         description = request.form['description']
         specialist = request.form['specialist']
         price = request.form['price']
-
         image = form.image.data
         if image:
             filename = secure_filename(image.filename)
             file_path = os.path.join(app.config['UPLOAD_FOLDER_SERVICES'], filename)
             image.save(file_path)
         
-        new_service = Services(title=title, description=description, specialist=specialist, price=price)
+        new_service = Services(title=title, description=description, specialist=specialist, price=price, image=image)
         try:
             db.session.add(new_service)
             db.session.commit()
         except BaseException as err:
-            # Надо выводить пользователю информацию об неуспешной регистрации
-            print(err)
             flash("Something bad!", 'error')
             raise err
         flash("Succesfull creation new service!", 'success')
@@ -148,16 +163,18 @@ def admin_services():
     return render_template('admin_services.html', form=form)
 
 @app.route('/services', methods=['GET'])
-def all_service():
-    return render_template("all_services.html")
+def all_services():
+    service = Services.query.all()
+    return render_template("all_services.html", service=service)
+
+
 
 @app.route('/services/<string:serviceName>', methods=['GET'])
 def service(serviceName):
-    service = Services.query.get_or_404(serviceName)
-    return render_template("services.html", service=service)
+    ser = Services.query.get_or_404(serviceName)
+    return render_template("services.html", ser=ser)
 
 # ('/specialists')
-# ('/reviews') # отзывы
 # admin_specialists
 # all_specialists
 # reviews

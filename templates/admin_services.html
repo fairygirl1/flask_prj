@@ -13,43 +13,29 @@
         </h2>
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+        <form method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary" enctype="multipart/form-data">
           <div class="form-floating mb-3">
-
-            <input type="title" name="title" class="form-control" id="floatingInput" placeholder="title">
+            <input type="text" name="title" class="form-control" id="floatingInput" placeholder="title">
             <label for="floatingInput">Title</label>
-
           </div>
           <div class="form-floating mb-3">
-
-            <input type="specialist" name="specialist" class="form-control" id="floatingInput" placeholder="specialist">
-            <label for="floatingInput">Specialist</label>
-
-          </div>
-          <div class="form-floating mb-3">
-
-            <input type="price" name="price" class="form-control" id="floatingInput" placeholder="price">
-            <label for="floatingInput">Price</label>
-
-          </div>
-
-          <div class="form-floating mb-3">
-
-            <input type="description" name="description" class="form-control" id="floatingInput" placeholder="description">
+            <input type="text" name="description" class="form-control" id="floatingInput" placeholder="description">
             <label for="floatingInput">Description</label>
-
+          </div>          
+          <div class="form-floating mb-3">
+            <input type="text" name="specialist" class="form-control" id="floatingInput" placeholder="specialist">
+            <label for="floatingInput">Specialist</label>
           </div>
-
-          <form method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="image">Select an image:</label>
-                <input type="file" name="image" id="image" accept="image/*" required>
-            </div>
-          </form>
-        
+          <div class="form-floating mb-3">
+            <input type="text" name="price" class="form-control" id="floatingInput" placeholder="price">
+            <label for="floatingInput">Price</label>
+          </div>
+          <div class="form-group">
+              <label for="image">Select an image:</label>
+              <input type="file" name="image" id="image" accept="image/*" required>
+          </div>        
          
           <button class="w-100 btn btn-lg btn-primary" type="submit">Publish</button>
-          <hr class="my-4">
         </form>
       </div>
     </div>
