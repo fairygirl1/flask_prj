@@ -151,9 +151,11 @@ def service(serviceId):
     return render_template("services.html", ser=ser)
 
 
-@app.route('/search/<title>', methods=['GET'])
-def search(title):
-    service = db.session.query(Services.title, Services.price, Services.specialist).filter(Services.title==title).all()
+@app.route('/search', methods=['GET'])
+def search():
+    title = request.args.get('title')
+    print(title)
+    service = db.session.query(Services.id, Services.title, Services.price, Services.specialist).filter(Services.title==title).all()
     return render_template("all_services.html", service=service)
 
 @app.route('/specialists', methods=['GET'])

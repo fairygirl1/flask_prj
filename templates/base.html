@@ -14,8 +14,8 @@
           <li><a href="{{url_for('specialists')}}" class="nav-link px-2">Specialists</a></li>
           <li><a href="{{url_for('reviews')}}" class="nav-link px-2">Reviews</a></li>
           <li><a href="{{url_for('about')}}" class="nav-link px-2">About</a></li>
-          <form class="d-flex mt-3 mt-lg-0" role="search" >
-            <input class="form-control me-2 px-2 link-secondary" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex mt-3 mt-lg-0" action="/search" role="search" >
+            <input class="form-control me-2 px-2 link-secondary" name="title" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-primary me-2" type="submit">Search</button>
           </form>
         </ul>
