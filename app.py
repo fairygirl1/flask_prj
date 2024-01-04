@@ -9,9 +9,12 @@ from flask_wtf.file import FileField, FileAllowed
 from wtforms import SubmitField
 from werkzeug.utils import secure_filename
 
+from models import User, Specialists, Services, Reviews, db
+from admin import admin
+
+from api.api import api_bp
 
 from flask import Flask, render_template, url_for, request, redirect, make_response, session,flash,get_flashed_messages
-from models import Specialists, User, Services, Blog, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
 
@@ -30,8 +33,12 @@ app.config['MAIL_USERNAME'] = Config.MAIL_USERNAME
 app.config['MAIL_PASSWORD'] = Config.MAIL_PASSWORD
 app.config['MAIL_DEFAULT_SENDER'] = Config.MAIL_DEFAULT_SENDER
 
+admin.init_app(app)
+
 db.init_app(app)
 mail = Mail(app)
+
+app.register_blueprint(api_bp, url_prefix="/api")
 
 def sessions():
     """Сессии"""
@@ -45,10 +52,6 @@ def service_base():
     service = Services.query.all()
     return render_template("service_base.html", service=service)
 
-@app.route('/admin')
-def admin_index():
-    """Страница администратора"""
-    return render_template('admin_index.html')
 
 @app.route('/', methods=["GET"])
 def index():
@@ -135,50 +138,38 @@ def claim():
 
     return render_template("claim.html")
 
-@app.route('/admin_services', methods=['POST', 'GET'])
-def admin_services():
-    """Создание нового сервиса"""
-    form = FlaskForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        title = request.form['title']
-        description = request.form['description']
-        specialist = request.form['specialist']
-        price = request.form['price']
-        image = form.image.data
-        if image:
-            filename = secure_filename(image.filename)
-            file_path = os.path.join(app.config['UPLOAD_FOLDER_SERVICES'], filename)
-            image.save(file_path)
-        
-        new_service = Services(title=title, description=description, specialist=specialist, price=price, image=image)
-        try:
-            db.session.add(new_service)
-            db.session.commit()
-        except BaseException as err:
-            flash("Something bad!", 'error')
-            raise err
-        flash("Succesfull creation new service!", 'success')
-        return redirect("/thanks")
-        
-    return render_template('admin_services.html', form=form)
 
-@app.route('/services', methods=['GET'])
+@app.route('/all_services', methods=['GET'])
 def all_services():
     service = Services.query.all()
     return render_template("all_services.html", service=service)
 
 
-
-@app.route('/services/<string:serviceName>', methods=['GET'])
-def service(serviceName):
-    ser = Services.query.get_or_404(serviceName)
+@app.route('/services/<int:serviceId>', methods=['GET'])
+def service(serviceId):
+    ser = Services.query.get_or_404(serviceId)
     return render_template("services.html", ser=ser)
 
-# ('/specialists')
-# admin_specialists
+
+@app.route('/search/<title>', methods=['GET'])
+def search(title):
+    service = db.session.query(Services.title, Services.price, Services.specialist).filter(Services.title==title).all()
+    return render_template("all_services.html", service=service)
+
+@app.route('/specialists', methods=['GET'])
+def specialists():
+    specialist = Specialists.query.all()
+    return render_template("specialists.html", specialist=specialist)
+
+@app.route('/reviews', methods=['GET'])
+def reviews():
+    review = Reviews.query.all()
+    return render_template("reviews.html", review=review)
+
+
 # all_specialists
-# reviews
-# admin_blog
+
+
 
 
 

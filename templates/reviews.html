@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="container">
+  <div class="row">
+    {% for review in review %}
+      <div class="col-12 col-lg-4">
+          <ul>
+            <div class="card card-cover h-80 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/review.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <p class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ review.text }}</p>
+                  <h4>Left by {{ review.author }}</h4>
+                  <h3>Mark {{ review.mark }} </h3>
+              </div>
+            </div>
+          </ul>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+  <nav class="blog-pagination" aria-label="Pagination">
+    <a class="btn btn-outline-primary rounded-pill btn-lg" href="{{ url_for('claim') }}">Send the review</a>
+  </nav>
+</main>
+
+{% endblock %}
