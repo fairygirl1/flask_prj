@@ -16,24 +16,22 @@ class User(db.Model):
 ### Администраторы
 class Specialists(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    avatar = db.Column(db.String(100), nullable = False)
     name = db.Column(db.String(100), nullable=False)
     position = db.Column(db.String(100), nullable=False) # специализация
-    services = db.Column(db.String(100), nullable=False) # связь с оказывваемой услугой one to many
+    services_id = db.Column(db.Integer, db.ForeignKey('service.id')) # связь с оказывваемой услугой one to many
+
 
 class Services(db.Model):
-    title = db.Column(db.String(100), primary_key=True, nullable=False)
-    # image = db.Column(db.String(100), nullable=False)
+    __tablename__ = 'service'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     specialist = db.Column(db.String(100), nullable=False)
     price = db.Column(db.String(10), nullable=False)
 
-class Blog(db.Model):
+class Reviews(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
+    mark = db.Column(db.Integer, nullable=False)
     author = db.Column(db.String(100), nullable=False)
     date = db.Column(db.String(100), nullable=False)
-    text = db.Column(db.String(2048), nullable=False)
-    pictures = db.Column(db.String(100), nullable=False) #картинок будет по 2 на каждой странице
-
-# модель на отзывы
+    text = db.Column(db.String(2048), nullable=False) 

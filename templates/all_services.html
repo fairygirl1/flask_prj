@@ -2,21 +2,27 @@
 {% block content %}
 
 <main class="container">
-  {% for service in service %}
-    <div class="col-12 col-lg-4">
-      <a href="/services/{{service.title}}">
-        <ul>
-          <div class="card card-cover h-80 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('{{service.image}}');">
-            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ service.title }}</h2>
-                <h4> {{ service.specialist }}</h4>
-                <h5>Price {{ service.price }} $</h5>
+  <div class="row">
+    {% for service in service %}
+      <div class="col-12 col-lg-4">
+        <a href="{{ url_for('service', serviceId=service.id) }}" class="service-link">
+          <ul>
+            <div class="card card-cover h-80 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/services/all_services.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ service.title }}</h2>
+                  <h4> {{ service.specialist }}</h4>
+                  <h5>Price {{ service.price }} $</h5>
+              </div>
             </div>
-          </div>
-        </ul>
-      </a>
-    </div>
-  {% endfor %}
+          </ul>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
 </main>
 
 {% endblock %}
+<!-- 
+<button class="btn btn-outline-primary rounded-pill service-button">
+  View Service {{ service.id }}
+</button> -->

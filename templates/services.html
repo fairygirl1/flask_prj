@@ -12,7 +12,7 @@
   
         <article class="blog-post">
             <div class="images text-center mb-3">
-                <img class="abot-article img-fluid w-50 rounded mx-auto m-2" src="{{ser.image}}">
+                <img class="abot-article img-fluid w-50 rounded mx-auto m-2" src="/static/images/services/main.jpg">
             </div>
             <p>
               {{ ser.description }}
@@ -23,25 +23,12 @@
          </article>
   
         <nav class="blog-pagination" aria-label="Pagination">
-          <a class="btn btn-outline-primary rounded-pill" href="/claim">Claim</a>
+          <a class="btn btn-outline-primary rounded-pill" href="{{ url_for ('claim')}}">Claim</a>
         </nav>
   
       </div>
   
-      <!-- <div class="col-md-4">
-        <div class="position-sticky" style="top: 2rem;">
-          <div class="p-4 mb-3 bg-body-tertiary rounded">
-            {% for service in service %}
-              {% if service.title != serviceName %}
-                <h4 class="fst-italic">{{service.title}}</h4>
-                <p class="mb-0">
-                  Master - {{service.specialist}}
-                </p>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      </div> -->
+
     </div>
   </main>
 
