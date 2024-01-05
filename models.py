@@ -14,6 +14,18 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(25), default='client')
 
+    def get_id(self):
+        return str(self.id)
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True  # or implement your logic for determining user activity
+
+    def is_anonymous(self):
+        return False
+
 ### Администраторы
 class Specialists(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -1,4 +1,4 @@
-import sqlite3
+
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
@@ -18,8 +18,6 @@ from flask import Flask, render_template, url_for, request, redirect, make_respo
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Mail, Message
 
-import time
-import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
@@ -156,7 +154,6 @@ def service(serviceId):
 @app.route('/search', methods=['GET'])
 def search():
     title = request.args.get('title')
-    print(title)
     service = db.session.query(Services.id, Services.title, Services.price, Services.specialist).filter(Services.title==title).all()
     return render_template("all_services.html", service=service)
 
@@ -180,14 +177,6 @@ def del_sessions():
 def out_user():
     session.pop('data', None)
     return redirect('/')
-
-
-# all_specialists
-
-
-
-
-
 
 
 if __name__ == '__main__':
