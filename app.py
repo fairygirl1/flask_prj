@@ -78,7 +78,9 @@ def auth():
         if check_password_hash(user.password, password):
             username=user.name
             flash(f"Glad to see you, {username}!")
-            return render_template('thanks.html', username=user.name, )
+            session['data'] = {'id': user.id, 'role': user.role}
+            print(session)
+            return render_template('thanks.html', username=user.name,)
         else:
             flash("Wrong password")
             return redirect("/auth")
@@ -90,9 +92,9 @@ def auth():
 def registration():
     """Регистрация"""
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
         password = generate_password_hash(password, "pbkdf2:sha256")
         new_user = User(name=name, email=email, password=password)
         try:
@@ -167,6 +169,17 @@ def specialists():
 def reviews():
     review = Reviews.query.all()
     return render_template("reviews.html", review=review)
+
+@app.route('/del_sessions')
+def del_sessions():
+    session.pop('visits', None)
+    return redirect('/')
+
+
+@app.route('/out_user')
+def out_user():
+    session.pop('data', None)
+    return redirect('/')
 
 
 # all_specialists
